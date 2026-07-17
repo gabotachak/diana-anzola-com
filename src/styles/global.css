@@ -225,29 +225,17 @@ h1, h2, h3, h4 { font-family: var(--serif); }
 }
 .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-/* Monogram badge (hero placeholder) */
-.monogram {
+/* Avatar photo (hero) */
+.avatar-photo {
   width: 128px;
   height: 128px;
   border-radius: 50%;
   border: 1.5px solid var(--gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--serif);
-  font-size: 40px;
-  font-weight: 500;
-  color: var(--accent);
+  object-fit: cover;
   background: var(--surface);
   flex-shrink: 0;
-  position: relative;
-}
-.monogram::before {
-  content: '';
-  position: absolute;
-  inset: -7px;
-  border-radius: 50%;
-  border: 1px solid var(--border-strong);
+  outline: 1px solid var(--border-strong);
+  outline-offset: 7px;
 }
 
 /* Footer */
