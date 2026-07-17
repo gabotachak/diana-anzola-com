@@ -8,16 +8,92 @@ export const profile = {
     "Contratación Estatal",
   ],
   location: "Bogotá, Colombia",
+  heroTitle: "Defiendo tus derechos laborales, pensionales y de familia",
+  bioClient:
+    "¿Te despidieron sin justa causa? ¿Tienes una incapacidad, pensión o EPS que no responde? ¿Necesitas resolver un divorcio, sucesión o custodia? Te asesoro y te represento con más de 14 años de experiencia en tutelas, derecho laboral, seguridad social y derecho de familia — en el sector público y privado.",
   bio: "Abogada especialista en Derecho Laboral y Seguridad Social con más de 14 años de experiencia integral. Sólida trayectoria en el sector público gestionando acciones de tutela, respuesta a entes de control, PQRS y contratación estatal (SECOP); y en el sector privado liderando la revisión de contratos mercantiles, actualización normativa y procesos disciplinarios laborales.",
   quote: "Reconocida por mi capacidad de mitigación de riesgos legales, alto sentido de pertenencia y un rigor técnico que me ha permitido ser recontratada por mérito en entidades del Estado.",
   contact: {
     phone: "3107507846",
     phoneIntl: "+573107507846",
-    email: "dmat2011juridica@gmail.com",
+    email: "abogada@diana-anzola.com",
     whatsapp: "https://wa.me/573107507846",
     location: "Bogotá, Colombia",
   },
 };
+
+export function whatsappLink(text: string): string {
+  return `${profile.contact.whatsapp}?text=${encodeURIComponent(text)}`;
+}
+
+export type ServiceEntry = {
+  question: string;
+  area: string;
+  description: string;
+  whatsappText: string;
+};
+
+export const services: ServiceEntry[] = [
+  {
+    question: "¿Te despidieron sin justa causa?",
+    area: "Derecho Laboral",
+    description: "Reclamación de indemnizaciones, liquidaciones y prestaciones sociales ante despidos injustificados.",
+    whatsappText: "Hola Diana, necesito asesoría por un despido laboral.",
+  },
+  {
+    question: "Problemas con tu pensión, EPS o incapacidad",
+    area: "Seguridad Social / Tutelas",
+    description: "Acciones de tutela y trámites ante negativas de pensión, EPS, ARL o pago de incapacidades.",
+    whatsappText: "Hola Diana, necesito ayuda con un tema de pensión, EPS o incapacidad.",
+  },
+  {
+    question: "Divorcio, sucesión o custodia",
+    area: "Derecho de Familia",
+    description: "Acompañamiento en procesos de divorcio, sucesiones y custodia de menores.",
+    whatsappText: "Hola Diana, necesito asesoría en un tema de derecho de familia.",
+  },
+  {
+    question: "Necesitas cobrar una deuda",
+    area: "Procesos Ejecutivos",
+    description: "Procesos ejecutivos y estudio de títulos para el cobro efectivo de obligaciones.",
+    whatsappText: "Hola Diana, necesito iniciar un proceso ejecutivo para cobrar una deuda.",
+  },
+  {
+    question: "Contratos y asesoría para tu empresa",
+    area: "Corporativo / Laboral",
+    description: "Revisión de contratos mercantiles, reglamentos internos y procesos disciplinarios para empresas.",
+    whatsappText: "Hola Diana, necesito asesoría corporativa/laboral para mi empresa.",
+  },
+];
+
+export type ProcessStep = {
+  step: string;
+  title: string;
+  description: string;
+};
+
+export const process: ProcessStep[] = [
+  {
+    step: "1",
+    title: "Escríbeme",
+    description: "Por WhatsApp, correo o el formulario de contacto, cuéntame brevemente tu situación.",
+  },
+  {
+    step: "2",
+    title: "Consulta inicial",
+    description: "Conversamos sobre tu caso, resuelvo tus dudas y te explico las opciones disponibles.",
+  },
+  {
+    step: "3",
+    title: "Evaluación del caso",
+    description: "Reviso los documentos y antecedentes para determinar la mejor estrategia jurídica.",
+  },
+  {
+    step: "4",
+    title: "Propuesta y honorarios",
+    description: "Te presento una propuesta clara, con honorarios definidos antes de iniciar cualquier trámite.",
+  },
+];
 
 export type ExperienceEntry = {
   company: string;

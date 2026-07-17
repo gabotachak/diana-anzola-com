@@ -1,13 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { profile, experience, education, languages, skills } from "../data/profile";
+import { profile, experience, education, languages, skills, services, process, whatsappLink } from "../data/profile";
 
 const nav = [
+  { href: "#services", label: "Servicios" },
+  { href: "#how-i-work", label: "Cómo Trabajo" },
   { href: "#experience", label: "Experiencia" },
-  { href: "#education", label: "Educación" },
-  { href: "#skills", label: "Habilidades" },
   { href: "#contact", label: "Contacto" },
 ];
+
+const heroWhatsapp = whatsappLink("Hola Diana, necesito asesoría legal.");
 ---
 
 <Layout>
@@ -17,7 +19,7 @@ const nav = [
     <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm" style="background: var(--nav-bg); border-bottom: 1px solid var(--border);">
       <div class="flex justify-between items-center px-4 md:px-8 py-4 max-w-5xl mx-auto">
         <a href="#top" class="font-serif text-base tracking-tight" style="font-family: var(--serif); color: var(--accent); font-weight: 600;">
-          Diana Anzola <span style="color: var(--gold);">Tachak</span>
+          <span style="color: var(--gold);">●</span> Diana Anzola Tachak
         </a>
         <div class="flex gap-5 md:gap-7 items-center">
           {nav.map(item => (
@@ -54,15 +56,15 @@ const nav = [
           </div>
 
           <h1 class="text-3xl md:text-5xl font-semibold mb-3 leading-tight" style="font-family: var(--serif); color: var(--text); letter-spacing:-0.3px;">
-            {profile.name}
+            {profile.heroTitle}
           </h1>
 
           <p class="text-base md:text-lg mb-6" style="color: var(--accent); font-family: var(--serif); font-style: italic;">
-            {profile.role}
+            {profile.name} · {profile.role} · Bogotá
           </p>
 
           <p class="text-sm md:text-[15px] leading-relaxed mb-4 max-w-xl" style="color: var(--text-soft);">
-            {profile.bio}
+            {profile.bioClient}
           </p>
 
           <p class="prompt-quote text-sm leading-relaxed mb-8 max-w-xl" style="color: var(--dim); font-family: var(--serif); font-style: italic;">
@@ -70,7 +72,7 @@ const nav = [
           </p>
 
           <div class="flex flex-wrap gap-3 mb-8">
-            <a href={profile.contact.whatsapp} target="_blank" class="btn-primary">
+            <a href={heroWhatsapp} target="_blank" class="btn-primary">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.85 9.85 0 0 0 4.73 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.11.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.4c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.25 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42-.14-.01-.31-.01-.48-.01-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.71 4.3 3.79.6.26 1.07.42 1.44.53.6.19 1.15.16 1.59.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
               Escríbeme por WhatsApp
             </a>
@@ -94,9 +96,43 @@ const nav = [
       </div>
     </section>
 
+    <!-- Servicios / Áreas de práctica -->
+    <section id="services" class="relative max-w-5xl mx-auto px-4 md:px-8 pb-20 reveal">
+      <div class="section-label"><span class="section-num">01</span> ¿En qué te puedo ayudar?</div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {services.map(service => (
+          <div class="edu-card flex flex-col">
+            <p class="text-[10px] uppercase tracking-[0.15em] mb-2" style="color: var(--gold);">{service.area}</p>
+            <h3 class="text-sm font-semibold mb-2" style="color: var(--text); font-family: var(--serif);">{service.question}</h3>
+            <p class="text-xs leading-relaxed mb-4 flex-1" style="color: var(--text-soft);">{service.description}</p>
+            <a href={whatsappLink(service.whatsappText)} target="_blank" class="text-xs font-medium inline-flex items-center gap-1.5" style="color: var(--accent);">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.85 9.85 0 0 0 4.73 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.11.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.4c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.25 8.24z"/></svg>
+              Escríbeme por WhatsApp
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Cómo trabajo -->
+    <section id="how-i-work" class="relative max-w-5xl mx-auto px-4 md:px-8 pb-20 reveal">
+      <div class="section-label"><span class="section-num">02</span> Cómo Trabajo</div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {process.map(item => (
+          <div class="edu-card">
+            <div class="flex items-center justify-center w-7 h-7 rounded-full mb-3 text-xs font-semibold" style="background: var(--gold-soft); color: var(--gold); border: 1px solid var(--gold);">{item.step}</div>
+            <h3 class="text-sm font-semibold mb-1" style="color: var(--text); font-family: var(--serif);">{item.title}</h3>
+            <p class="text-xs leading-relaxed" style="color: var(--text-soft);">{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
     <!-- Experiencia -->
     <section id="experience" class="relative max-w-5xl mx-auto px-4 md:px-8 pb-20 reveal">
-      <div class="section-label"><span class="section-num">01</span> Experiencia Laboral</div>
+      <div class="section-label"><span class="section-num">03</span> Experiencia Laboral</div>
 
       <div class="relative pl-8">
         <div class="timeline-line"></div>
@@ -140,7 +176,7 @@ const nav = [
 
     <!-- Educación -->
     <section id="education" class="relative max-w-5xl mx-auto px-4 md:px-8 pb-20 reveal">
-      <div class="section-label"><span class="section-num">02</span> Formación Académica</div>
+      <div class="section-label"><span class="section-num">04</span> Formación Académica</div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
         {education.map(item => (
@@ -166,7 +202,7 @@ const nav = [
 
     <!-- Habilidades -->
     <section id="skills" class="relative max-w-5xl mx-auto px-4 md:px-8 pb-24 reveal">
-      <div class="section-label"><span class="section-num">03</span> Áreas de Práctica y Habilidades</div>
+      <div class="section-label"><span class="section-num">05</span> Áreas de Práctica y Habilidades</div>
 
       <div class="flex flex-wrap gap-2.5">
         {skills.map(skill => <span class="skill-chip">{skill}</span>)}
@@ -175,7 +211,7 @@ const nav = [
 
     <!-- Contacto -->
     <section id="contact" class="relative max-w-5xl mx-auto px-4 md:px-8 pb-24 reveal">
-      <div class="section-label"><span class="section-num">04</span> Contacto</div>
+      <div class="section-label"><span class="section-num">06</span> Contacto</div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <a href={`tel:${profile.contact.phoneIntl}`} class="contact-card block">
@@ -222,6 +258,11 @@ const nav = [
         <span>Bogotá, Colombia</span>
       </div>
     </footer>
+
+    <!-- WhatsApp flotante -->
+    <a href={heroWhatsapp} target="_blank" class="whatsapp-float" aria-label="Escríbeme por WhatsApp">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.85 9.85 0 0 0 4.73 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.11.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.4c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.25 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42-.14-.01-.31-.01-.48-.01-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.71 4.3 3.79.6.26 1.07.42 1.44.53.6.19 1.15.16 1.59.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+    </a>
   </div>
 
   <script>

@@ -7,21 +7,28 @@ interface Props {
 }
 
 const {
-  title = "Diana Anzola Tachak — Abogada Laboral y Seguridad Social",
-  description = "Abogada especialista en Derecho Laboral y Seguridad Social con más de 14 años de experiencia en sector público y privado. Bogotá, Colombia.",
+  title = "Diana Anzola Tachak — Abogada Laboral en Bogotá",
+  description = "Abogada laboral en Bogotá con más de 14 años de experiencia. Tutelas, seguridad social (pensión, EPS, incapacidades), derecho de familia y derecho laboral. Consulta por WhatsApp.",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImageURL = new URL("/og-image.png", Astro.site).toString();
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
+  "@type": "Attorney",
   "name": "Diana Milena Anzola Tachak",
   "url": "https://diana-anzola.com",
-  "email": "dmat2011juridica@gmail.com",
+  "image": ogImageURL,
+  "email": "abogada@diana-anzola.com",
   "telephone": "+573107507846",
   "jobTitle": "Abogada — Derecho Laboral y Seguridad Social",
   "description": description,
+  "priceRange": "Consulta inicial a convenir",
+  "areaServed": {
+    "@type": "City",
+    "name": "Bogotá"
+  },
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Bogotá",
@@ -56,10 +63,15 @@ const jsonLd = {
     <meta property="og:type" content="profile" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:locale" content="es_CO" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImageURL} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <script is:inline>
