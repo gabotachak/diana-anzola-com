@@ -1,0 +1,73 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Diana Anzola Tachak — Abogada Laboral y Seguridad Social",
+  description = "Abogada especialista en Derecho Laboral y Seguridad Social con más de 14 años de experiencia en sector público y privado. Bogotá, Colombia.",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Diana Milena Anzola Tachak",
+  "url": "https://diana-anzola.com",
+  "email": "dmat2011juridica@gmail.com",
+  "telephone": "+573107507846",
+  "jobTitle": "Abogada — Derecho Laboral y Seguridad Social",
+  "description": description,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Bogotá",
+    "addressCountry": "CO"
+  },
+  "knowsAbout": [
+    "Derecho Laboral",
+    "Seguridad Social",
+    "Derecho Constitucional",
+    "Acciones de Tutela",
+    "Contratación Estatal",
+    "Derecho Civil",
+    "Derecho de Familia"
+  ],
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Universidad Libre de Colombia" },
+    { "@type": "CollegeOrUniversity", "name": "Universidad Católica de Colombia" }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Diana Milena Anzola Tachak" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content="es_CO" />
+    <meta name="twitter:card" content="summary" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>{title}</title>
+    <script is:inline>
+      document.documentElement.classList.remove('no-js');
+    </script>
+  </head>
+  <body class="min-h-screen antialiased">
+    <slot />
+  </body>
+</html>
