@@ -10,13 +10,20 @@
 
   --accent:          #163a5f;   /* azul institucional */
   --accent-soft:     #163a5f14;
+  --accent-deep:     #0f2c49;   /* navy más profundo (bandas) */
   --gold:            #9c7a2e;   /* dorado sobrio, logros/acentos */
   --gold-soft:       #9c7a2e14;
+  --gold-bright:     #c79a3e;   /* dorado sobre navy */
 
   --text:            #1c1a16;
   --text-soft:       #4a463d;
-  --dim:             #746c5c;   /* darkened for 4.5:1 contrast on --bg */
+  --dim:             #6c6555;   /* darkened for 4.5:1 contrast on --bg */
   --muted:           #b3ab99;
+
+  /* texto sobre banda navy */
+  --on-dark:         #f6f2ea;
+  --on-dark-soft:    #cdd6df;
+  --on-dark-dim:     #8ea1b3;
 
   --serif:           'Fraunces', Georgia, serif;
   --sans:            'Inter', system-ui, sans-serif;
@@ -86,10 +93,60 @@ h1, h2, h3, h4 { font-family: var(--serif); }
 }
 :global(html.no-js) .reveal { opacity: 1; transform: none; }
 
-/* Section label ("// experiencia") */
-.section-label {
+/* ── Banda navy (hero / autoridad) ── */
+.band-navy {
+  background:
+    radial-gradient(120% 120% at 15% 0%, #1c4671 0%, var(--accent) 45%, var(--accent-deep) 100%);
+  color: var(--on-dark);
+  position: relative;
+}
+.band-navy::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold-bright) 20%, var(--gold-bright) 80%, transparent);
+  opacity: 0.7;
+}
+
+/* Credential strip (hechos reales, no promesas) */
+.cred-strip {
+  border-top: 1px solid rgba(199,154,62,0.28);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px 0;
+}
+@media (min-width: 768px) {
+  .cred-strip { grid-template-columns: repeat(3, 1fr); }
+}
+.cred-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 0;
+}
+@media (max-width: 767px) {
+  .cred-item { flex-direction: row; align-items: baseline; gap: 8px; padding: 12px 0; }
+}
+.cred-key {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--gold-bright);
+  white-space: nowrap;
+}
+.cred-label {
   font-size: 11px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-dark-dim);
+}
+
+/* Section label */
+.section-label {
+  font-size: 12px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
   font-weight: 600;
@@ -100,12 +157,10 @@ h1, h2, h3, h4 { font-family: var(--serif); }
   align-items: baseline;
   gap: 10px;
 }
-.section-label .section-num {
-  font-family: var(--serif);
-  font-style: italic;
-  color: var(--muted);
-  font-size: 13px;
-  letter-spacing: 0;
+.section-label .section-mark {
+  color: var(--gold);
+  font-size: 9px;
+  transform: translateY(-2px);
 }
 
 /* Timeline (experiencia) */
@@ -208,6 +263,45 @@ h1, h2, h3, h4 { font-family: var(--serif); }
 }
 .btn-primary:hover { background: #0f2c49; transform: translateY(-1px); }
 
+/* CTA WhatsApp (destaca sobre navy) */
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 3px;
+  background: #25d366;
+  color: #08331c;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  box-shadow: 0 6px 20px rgba(37,211,102,0.28);
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.btn-whatsapp:hover {
+  background: #1fbb59;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 26px rgba(37,211,102,0.36);
+}
+
+/* Botón outline sobre navy */
+.btn-on-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 3px;
+  border: 1px solid rgba(246,242,234,0.35);
+  color: var(--on-dark);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.btn-on-dark:hover { border-color: var(--gold-bright); background: rgba(246,242,234,0.06); }
+
 .btn-secondary {
   display: inline-flex;
   align-items: center;
@@ -225,17 +319,21 @@ h1, h2, h3, h4 { font-family: var(--serif); }
 }
 .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
 
-/* Avatar photo (hero) */
+/* Avatar photo (hero, sobre navy) */
 .avatar-photo {
   width: 128px;
   height: 128px;
   border-radius: 50%;
-  border: 1.5px solid var(--gold);
+  border: 2px solid var(--gold-bright);
   object-fit: cover;
   background: var(--surface);
   flex-shrink: 0;
-  outline: 1px solid var(--border-strong);
-  outline-offset: 7px;
+  outline: 1px solid rgba(199,154,62,0.35);
+  outline-offset: 8px;
+  box-shadow: 0 10px 40px rgba(8,22,38,0.45);
+}
+@media (min-width: 768px) {
+  .avatar-photo { width: 168px; height: 168px; }
 }
 
 /* Footer */
@@ -262,7 +360,28 @@ h1, h2, h3, h4 { font-family: var(--serif); }
 }
 .mobile-nav-link:last-child { border-bottom: none; }
 
-/* WhatsApp floating button */
+/* Service card: acento superior (jerarquía money) */
+.service-card {
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.service-card:hover::before { transform: scaleX(1); }
+.service-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 6px 28px rgba(28,26,22,0.08);
+}
+
+/* WhatsApp floating button (desktop) */
 .whatsapp-float {
   position: fixed;
   right: 20px;
@@ -280,3 +399,23 @@ h1, h2, h3, h4 { font-family: var(--serif); }
   transition: transform 0.2s;
 }
 .whatsapp-float:hover { transform: scale(1.06); }
+@media (max-width: 640px) { .whatsapp-float { display: none; } }
+
+/* Barra CTA fija (móvil) */
+.mobile-cta {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 50;
+  display: none;
+  gap: 8px;
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  background: var(--nav-bg);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--border);
+}
+@media (max-width: 640px) {
+  .mobile-cta { display: flex; }
+  body { padding-bottom: 76px; }
+}
+.mobile-cta a { flex: 1; justify-content: center; }
+.mobile-cta .btn-primary { flex: 0 0 auto; padding: 12px 16px; }
